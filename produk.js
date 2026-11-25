@@ -3,87 +3,51 @@
    PENGATURAN TOKO & DATA PRODUK — cukup ubah berkas ini.
    ========================================================= */
 window.TOKO = {
-  nama: (window.TEMA && TEMA.nama) || 'Rupa Lokal', // nama toko diambil dari tema.js
-  slogan: 'Barang harian buatan perajin lokal',
-  // Nomor WhatsApp format internasional tanpa + dan tanpa spasi (62 = Indonesia)
-  wa: '6281200001234',
+  nama: (window.TEMA && TEMA.nama) || 'HOME APPLIANCES CENTER',
+  slogan: 'Perlengkapan makan melamin untuk setiap hari',
+  // Nomor internasional: 085827869478 diubah menjadi 6285827869478.
+  wa: '6285827869478',
   mataUang: 'Rp',
-  // Ongkir sederhana per kota (Rupiah). "Ambil di toko" = 0.
+  // Melayani seluruh Indonesia. Ongkir dibayar pembeli dan dikonfirmasi admin via WhatsApp.
   ongkir: [
-    { kota: 'Ambil di toko', biaya: 0 },
-    { kota: 'Bandung', biaya: 10000 },
-    { kota: 'Cimahi', biaya: 12000 },
-    { kota: 'Jakarta', biaya: 18000 },
-    { kota: 'Bogor', biaya: 18000 },
-    { kota: 'Surabaya', biaya: 25000 },
-    { kota: 'Yogyakarta', biaya: 22000 },
-    { kota: 'Kota lain (cek ongkir via chat)', biaya: 0, tanya: true }
+    { kota: 'Seluruh Indonesia (ongkir sesuai alamat)', biaya: 0, tanya: true }
   ],
-  gratisOngkirMin: 300000, // belanja >= angka ini gratis ongkir (0 = nonaktif)
-  // OPSIONAL: ambil produk dari Google Sheet (File → Bagikan → Publikasikan ke web → CSV).
-  // Kolom: id,nama,kategori,harga,hargaCoret,deskripsi,varian,gambar,stok,label
-  // varian: "Ukuran:S,M,L;Warna:Hitam,Putih"   gambar: url1|url2 (kosongkan = gambar ilustrasi)
+  gratisOngkirMin: 0,
   sheetCSV: '',
-  // LOGO & FOTO — ganti cukup timpa berkas di img/ atau ubah path di sini.
-  logo: 'img/logo.svg',              // tampil di header; kosongkan '' = inisial nama toko
-  fotoKosong: 'img/foto-produk.svg'  // dipakai bila produk tanpa gambar / foto gagal dimuat
+  logo: 'img/logo.svg',
+  fotoKosong: 'img/foto-produk.svg'
 };
 
-/* Gambar: isi dengan URL foto (mis. "img/kaos-1.jpg") ATAU objek ilustrasi
-   { bentuk: 'kaos'|'tote'|'mug'|'topi'|'botol'|'buku'|'lilin'|'tas'|'tatakan', warna: '#hex', aksen: '#hex' }. */
+/* Harga dan pilihan produk di bawah adalah contoh awal; sesuaikan dengan katalog dan harga aktual toko. */
 window.PRODUK = [
   {
-    id: 'kaos-katun', nama: 'Kaos Katun Combed 30s', kategori: 'Pakaian', harga: 89000, hargaCoret: 109000, label: 'Terlaris', stok: 40,
-    deskripsi: 'Kaos katun combed 30s yang adem dan tidak menerawang. Jahitan rantai di bahu, sablon plastisol tahan cuci.',
-    varian: [{ nama: 'Ukuran', opsi: ['S', 'M', 'L', 'XL'], tambah: { XL: 10000 } }, { nama: 'Warna', opsi: ['Hitam', 'Krem', 'Hijau'] }],
-    gambar: [{ bentuk: 'kaos', warna: '#2b2b2b', aksen: '#e7c9a0' }, { bentuk: 'kaos', warna: '#e9dcc4', aksen: '#b4532a' }, { bentuk: 'kaos', warna: '#3f5b45', aksen: '#f2e8d5' }]
+    id: 'piring-melamin', nama: 'Piring Melamin Serbaguna', kategori: 'Piring', harga: 12000, label: 'Favorit', stok: 30,
+    deskripsi: 'Piring melamin ringan untuk hidangan sehari-hari. Praktis digunakan di rumah maupun saat bepergian.',
+    varian: [{ nama: 'Ukuran', opsi: ['7 inci', '9 inci'] }],
+    gambar: ['img/piring-melamin.svg']
   },
   {
-    id: 'tote-kanvas', nama: 'Tote Bag Kanvas Tebal', kategori: 'Tas', harga: 65000, stok: 25,
-    deskripsi: 'Kanvas 12 oz dengan saku dalam dan resleting. Muat laptop 14 inci, tali panjang nyaman dibahu.',
-    varian: [{ nama: 'Warna', opsi: ['Natural', 'Hitam'] }],
-    gambar: [{ bentuk: 'tote', warna: '#e6d8bd', aksen: '#b4532a' }, { bentuk: 'tote', warna: '#262626', aksen: '#e6d8bd' }]
+    id: 'mangkok-melamin', nama: 'Mangkok Melamin', kategori: 'Mangkok', harga: 10000, stok: 24,
+    deskripsi: 'Mangkok melamin ringan untuk sup, mi, camilan, dan sajian keluarga.',
+    varian: [{ nama: 'Warna', opsi: ['Putih', 'Hijau', 'Kuning'] }],
+    gambar: ['img/mangkok-melamin.svg']
   },
   {
-    id: 'mug-keramik', nama: 'Mug Keramik Glasir', kategori: 'Dapur', harga: 75000, label: 'Baru', stok: 18,
-    deskripsi: 'Mug keramik buatan tangan, glasir food grade. Kapasitas 300 ml, aman untuk microwave.',
-    varian: [{ nama: 'Warna', opsi: ['Terakota', 'Biru Laut', 'Putih Gading'] }],
-    gambar: [{ bentuk: 'mug', warna: '#b4532a', aksen: '#f2e8d5' }, { bentuk: 'mug', warna: '#2f5d7c', aksen: '#f2e8d5' }, { bentuk: 'mug', warna: '#efe6d2', aksen: '#b4532a' }]
+    id: 'gelas-melamin', nama: 'Gelas Melamin', kategori: 'Gelas', harga: 8000, label: 'Praktis', stok: 36,
+    deskripsi: 'Gelas melamin ringan untuk penggunaan sehari-hari di rumah, kantor, atau piknik.',
+    varian: [{ nama: 'Warna', opsi: ['Putih', 'Hijau', 'Kuning'] }],
+    gambar: ['img/gelas-melamin.svg']
   },
   {
-    id: 'topi-corduroy', nama: 'Topi Corduroy', kategori: 'Pakaian', harga: 79000, stok: 12,
-    deskripsi: 'Topi bahan corduroy lembut dengan strap kuningan yang bisa diatur. Satu ukuran untuk dewasa.',
-    varian: [{ nama: 'Warna', opsi: ['Cokelat', 'Hijau Zaitun', 'Krem'] }],
-    gambar: [{ bentuk: 'topi', warna: '#7a4b2a', aksen: '#e7c9a0' }, { bentuk: 'topi', warna: '#5f6b3a', aksen: '#f2e8d5' }]
+    id: 'sendok-garpu-melamin', nama: 'Set Sendok dan Garpu Melamin', kategori: 'Peralatan makan', harga: 7500, stok: 40,
+    deskripsi: 'Set sendok dan garpu melamin yang ringan dan praktis dibawa. Harga contoh untuk satu set.',
+    varian: [{ nama: 'Warna', opsi: ['Putih', 'Hijau', 'Kuning'] }],
+    gambar: ['img/sendok-garpu-melamin.svg']
   },
   {
-    id: 'botol-minum', nama: 'Botol Minum Stainless 600 ml', kategori: 'Dapur', harga: 119000, hargaCoret: 139000, stok: 30,
-    deskripsi: 'Dinding ganda, dingin 24 jam dan panas 12 jam. Tutup anti tumpah, muat di cup holder mobil.',
-    varian: [{ nama: 'Warna', opsi: ['Hijau', 'Pasir', 'Hitam'] }],
-    gambar: [{ bentuk: 'botol', warna: '#3f5b45', aksen: '#f2e8d5' }, { bentuk: 'botol', warna: '#d8c3a0', aksen: '#3f5b45' }]
-  },
-  {
-    id: 'buku-catatan', nama: 'Buku Catatan Kertas Daur Ulang', kategori: 'Alat Tulis', harga: 45000, label: 'Ramah lingkungan', stok: 50,
-    deskripsi: 'Sampul karton tebal, 120 halaman kertas daur ulang 100 gsm. Jilid benang, bisa terbuka rata.',
-    varian: [{ nama: 'Isi', opsi: ['Polos', 'Bergaris', 'Titik'] }, { nama: 'Ukuran', opsi: ['A6', 'A5'], tambah: { A5: 15000 } }],
-    gambar: [{ bentuk: 'buku', warna: '#b4532a', aksen: '#f2e8d5' }, { bentuk: 'buku', warna: '#2f5d7c', aksen: '#f2e8d5' }, { bentuk: 'buku', warna: '#d8c3a0', aksen: '#262626' }]
-  },
-  {
-    id: 'lilin-aroma', nama: 'Lilin Aromaterapi Soy Wax', kategori: 'Rumah', harga: 69000, stok: 0,
-    deskripsi: 'Lilin soy wax dengan sumbu katun, durasi bakar ±25 jam. Wangi lembut, tidak bikin pusing.',
-    varian: [{ nama: 'Aroma', opsi: ['Lavender', 'Kopi', 'Sereh'] }],
-    gambar: [{ bentuk: 'lilin', warna: '#efe6d2', aksen: '#7a4b2a' }, { bentuk: 'lilin', warna: '#cfd8c6', aksen: '#3f5b45' }]
-  },
-  {
-    id: 'tas-selempang', nama: 'Tas Selempang Mini', kategori: 'Tas', harga: 135000, stok: 9,
-    deskripsi: 'Muat HP, dompet, dan kunci. Bahan kanvas waxed tahan cipratan air, tali bisa diatur.',
-    varian: [{ nama: 'Warna', opsi: ['Hitam', 'Zaitun', 'Cokelat'] }],
-    gambar: [{ bentuk: 'tas', warna: '#262626', aksen: '#c99a5b' }, { bentuk: 'tas', warna: '#5f6b3a', aksen: '#e7c9a0' }, { bentuk: 'tas', warna: '#7a4b2a', aksen: '#f2e8d5' }]
-  },
-  {
-    id: 'piring-rotan', nama: 'Tatakan Gelas Rotan (isi 4)', kategori: 'Rumah', harga: 39000, stok: 60,
-    deskripsi: 'Anyaman rotan asli diameter 10 cm. Menyerap embun gelas dan bikin meja makin hangat.',
+    id: 'set-makan-melamin', nama: 'Paket Peralatan Makan Keluarga', kategori: 'Paket', harga: 120000, label: 'Paket hemat', stok: 12,
+    deskripsi: 'Contoh paket berisi piring, mangkok, dan gelas melamin untuk kebutuhan makan keluarga. Rincian isi dapat dikonfirmasi melalui WhatsApp.',
     varian: [],
-    gambar: [{ bentuk: 'tatakan', warna: '#c99a5b', aksen: '#7a4b2a' }, { bentuk: 'tatakan', warna: '#a87a45', aksen: '#f2e8d5' }]
+    gambar: ['img/paket-melamin.svg']
   }
 ];
